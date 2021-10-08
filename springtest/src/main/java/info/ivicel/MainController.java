@@ -1,6 +1,9 @@
 package info.ivicel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
@@ -37,5 +40,41 @@ public class MainController {
         return ResponseEntity.ok(posts);
     }
 
+    public static class WebResult {
+        private int i;
+        private String s;
+        private Object object;
 
+        public WebResult(int i, String s, Object object) {
+            this.i = i;
+            this.s = s;
+            this.object = object;
+        }
+
+        public int getI() {
+            return i;
+        }
+
+        public String getS() {
+            return s;
+        }
+
+        public Object getObject() {
+            return object;
+        }
+    }
+
+    @GetMapping("/abc")
+    public WebResult abc() {
+        Post post = new Post();
+        post.setBody("ajdfklsajf");
+        List<Post> list = new ArrayList<>();
+        list.add(post);
+
+        Map<Object, Object> map = new HashMap<>();
+        map.put("first", list.get(0));
+        map.put("second", list);
+
+        return new WebResult(200, "ok", map);
+    }
 }
