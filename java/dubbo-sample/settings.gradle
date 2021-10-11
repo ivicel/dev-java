@@ -1,5 +1,0 @@
-rootProject.name = 'dubbo-sample'
-include 'dubbo-client'
-include 'dubbo-server'
-include 'dubbo-service-interface'
-
